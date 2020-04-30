@@ -1,4 +1,5 @@
 import React from 'react';
+import TickerList from './TickerList.js';
 import BuyStock from './BuyStock.jsx';
 import Footer from './Footer';
 import Decimal from './Decimal.jsx';
@@ -18,6 +19,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+       <TickerList /> 
         <button onClick={this.buy}>okey</button>
         {this.state.status ? <BuyStock price={88.07} openCloseFunction={this.buy} code='NKE' currentBalance={100000} name='Nike' /> : null}
       <Footer/>

@@ -1,8 +1,21 @@
 import React from 'react';
 import styled from 'styled-components'
+import json from './data.json';
 {/* import Decimal from './Decimal.js'; */}
 
 class TickerList extends React.Component {
+  // fetch(query)
+  //   .then((response) => { return response.json(); })
+  //   .then((data) => { 
+  //     this.setState({
+  //       ticker: data.symbol,
+  //       companyName: data.profile.companyName,
+  //       price: data.profile.price,
+  //     });
+  //   })
+  //   .catch((error) => {
+  //     this.setState({ tickerFound: false })
+  //   })
   static defaultProps = {
     data :  [ 
       { 
@@ -22,10 +35,11 @@ class TickerList extends React.Component {
   state = { pageNum:1, items:4 }
   formatMe = (x) => { return Number(x).toFixed(2);}
   render(){
+    console.log(Object.entries(json).map(x => x).map(x => x));
   const {items, pageNum} = this.state;
     return(
       <section className='tickerList'>
-        <div className='results'>{this.props.data.slice(items * (pageNum-1), pageNum * items)
+        <div className='results'>{data.slice(items * (pageNum-1), pageNum * items)
             .map( each =>
             <Ticker   className='each-ticker' key={each.code}>
               <Detail className='code'   > {each.code} </Detail>
@@ -43,9 +57,10 @@ class TickerList extends React.Component {
             )}
           </div>
           <Pages className='pages'>
-            <Page onClick={this.switchPage}>{pageNum}</Page>
-            <Page onClick={this.switchPage}>{pageNum+1}</Page>
-            <Page onClick={this.switchPage}>{pageNum+2}</Page>
+            <Page onClick={() => this.setState({pageNum: 1})}>{pageNum}</Page>
+            <Page onClick={() => this.setState({pageNum: 2})}>{pageNum}</Page>
+            <Page onClick={() => this.setState({pageNum: 3})}>{pageNum}</Page>
+            <Page onClick={() => this.setState({pageNum: 4})}>{pageNum}</Page>
           </Pages>
         </section>
     )

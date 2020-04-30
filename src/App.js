@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import BuyStock from './BuyStock.jsx';
+import Decimal from './Decimal.jsx';
+import {
+  BrowserRouter as Router, Route, NavLink
+}
+  from "react-router-dom";
+class App extends React.Component {
+  state = {
+    status: true
+  }
+  buy = () => {
+    this.setState({
+      status: !this.state.status
+    })
+  }
+  render() {
+    return (
+      <div>
+        <button onClick={this.buy}>okey</button>
+        {this.state.status ? <BuyStock price={88.07} openCloseFunction={this.buy} code='NKE' currentBalance={100000} name='Nike' /> : null}
+      </div>
+    )
+  }
 }
 
 export default App;

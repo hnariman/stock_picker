@@ -1,0 +1,42 @@
+.tickerList {
+  font-size:1.2rem;
+  margin-top: 20vh;
+}
+.each-ticker {
+  margin:2px auto;
+  width: 40vw;
+  height:18vh;
+  line-height:18vh;
+  border:1px solid black;
+}
+
+.each-ticker>* { 
+  display: inline-block; 
+  margin-right: 50px;
+}
+.each-ticker:hover {
+  background:#ffcccc;
+}
+
+ul.pages {
+  width:10vw;
+  margin: 0 auto;
+}
+
+
+ul.pages li {
+  text-align:center;
+  display:inline-block;
+  list-style:none;
+}
+
+ul.pages button {
+  font-size:1.2rem;
+  border:none;
+  background: white;
+  cursor:pointer;
+}
+
+ul.pages button:hover {
+  opacity:0.5;
+}

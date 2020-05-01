@@ -35,11 +35,11 @@ class TickerList extends React.Component {
   state = { pageNum:1, items:4 }
   formatMe = (x) => { return Number(x).toFixed(2);}
   render(){
-    console.log(Object.entries(json).map(x => x).map(x => x));
+    // console.log(Object.entries(json).map(x => x).map(x => x));
   const {items, pageNum} = this.state;
     return(
       <section className='tickerList'>
-        <div className='results'>{data.slice(items * (pageNum-1), pageNum * items)
+        <div className='results'>{this.props.data.slice(items * (pageNum-1), pageNum * items)
             .map( each =>
             <Ticker   className='each-ticker' key={each.code}>
               <Detail className='code'   > {each.code} </Detail>

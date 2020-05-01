@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
 import json from './data.json';
+{/* import PropTypes from 'prop-types'; */}
+{/* import ReactPaginate from 'react-paginate'; */}
 {/* import Decimal from './Decimal.js'; */}
 
 class TickerList extends React.Component {
@@ -62,6 +64,19 @@ class TickerList extends React.Component {
             <Page onClick={() => this.setState({pageNum: 3})}>{pageNum}</Page>
             <Page onClick={() => this.setState({pageNum: 4})}>{pageNum}</Page>
           </Pages>
+        {/* <ReactPaginate */}
+        {/*   previousLabel={'previous'} */}
+        {/*   nextLabel={'next'} */}
+        {/*   breakLabel={'...'} */}
+        {/*   breakClassName={'break-me'} */}
+        {/*   pageCount={this.state.pageCount} */}
+        {/*   marginPagesDisplayed={2} */}
+        {/*   pageRangeDisplayed={5} */}
+        {/*   onPageChange={this.handlePageClick} */}
+        {/*   containerClassName={'pagination'} */}
+        {/*   subContainerClassName={'pages pagination'} */}
+        {/*   activeClassName={'active'} */}
+        {/* /> */}
         </section>
     )
   }

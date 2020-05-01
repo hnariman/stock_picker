@@ -1,0 +1,18 @@
+.divLink a:hover {
+    color: #ffdc40;
+    border-bottom: 2px solid black;
+    text-decoration: none;
+}
+
+.divLink a {
+    text-decoration: none;
+    color: black;
+    font-family: "Roboto";
+    font-size: 20px;
+    float: left;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 5px;
+    width: 170px;
+    margin-right: -23px;
+}

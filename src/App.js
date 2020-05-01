@@ -19,10 +19,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-       <TickerList /> 
+        <TickerList />
         <button onClick={this.buy}>okey</button>
         {this.state.status ? <BuyStock price={88.07} openCloseFunction={this.buy} code='NKE' currentBalance={100000} name='Nike' /> : null}
-      <Footer/>
+        <Footer />
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
-
+import Decimal from './Decimal';
 const FooterCSS = styled.div`
     font-family: 'Roboto', sans-serif;
     position: absolute;
@@ -33,37 +33,13 @@ const FooterRemainCSS = styled.span`
 `;
 
 class Footer extends Component {
-    state = {
-        balance: '',
-        remain: '',
-    }
-
-    handleBalance(data) {
-        const beforeDot = data.currentBalance.toFixed(0);
-        const afterDot = data.currentBalance.toFixed(2).toString();
-        const remain = (afterDot.substring(afterDot.length - 3));
-        this.setState({
-            balance: beforeDot,
-            remain: remain,
-        });
-    }
-
-    callFetch() {
-        fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1')
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                this.handleBalance(data);
-            });
-    }
 
     render = () => {
-        {this.callFetch()}
+        const { currentBalance } = this.props
         return (
             <FooterCSS>
                 <FooterBalanceCSS>Balance:</FooterBalanceCSS>
-                <FooterAmountCSS>{this.state.balance}<FooterRemainCSS>{this.state.remain}$</FooterRemainCSS></FooterAmountCSS>
+                <FooterAmountCSS><Decimal number={currentBalance} /></FooterAmountCSS>
                 <FooterAmountCSS></FooterAmountCSS>
             </FooterCSS>
         );

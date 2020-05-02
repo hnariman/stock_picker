@@ -1,31 +1,43 @@
 import React from 'react';
-import TickerList from './TickerList.js';
 import BuyStock from './BuyStock.jsx';
 import Footer from './Footer';
-import Decimal from './Decimal.jsx';
-import {
-  BrowserRouter as Router, Route, NavLink
-}
-  from "react-router-dom";
+import Account from './Account.jsx';
+import Navbar from "./Navbar";
+import Stock from './Stock';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 class App extends React.Component {
-  state = {
-    status: true
+  constructor() {
+    super()
+    this.callFetch()
   }
-  buy = () => {
-    this.setState({
-      status: !this.state.status
-    })
+  state = {
+    balance: null
+  }
+  callFetch = () => {
+    fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1')
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        this.setState({
+          balance: data.currentBalance
+        })
+      });
   }
   render() {
+    const balance = this.state.balance
     return (
-      <div>
-       <TickerList /> 
-        <button onClick={this.buy}>okey</button>
-        {this.state.status ? <BuyStock price={88.07} openCloseFunction={this.buy} code='NKE' currentBalance={100000} name='Nike' /> : null}
-      <Footer/>
-      </div>
-    )
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route path="/Account" component={Account} />
+          <Route path="/Stock" component={Stock} />
+          <Route exact path="/BuyStock"><BuyStock price={88.07} openCloseFunction={this.buy} code='NKE' currentBalance={balance} name='Nike' /></Route>
+        </Switch>
+        <Footer currentBalance={balance} />
+      </Router>
+    );
   }
 }
-
 export default App;

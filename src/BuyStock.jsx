@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Decimal from './Decimal.jsx';
-// import {
-//     BrowserRouter as Router, Route, NavLink
-// } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import 'antd/dist/antd.css';
 import { PlusOutlined, MinusOutlined, LeftOutlined } from '@ant-design/icons';
@@ -13,8 +11,7 @@ const BuyStockBlock = styled.div`
    display:flex;
    flex-direction:column;
    justify-content: space-around;
-   border:1px solid red;
-   min-height:500px;
+   min-height:400px;
    height:80vh;
 `
 
@@ -25,7 +22,7 @@ const HeaderBuyStock = styled.div`
     padding:20px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
 `
-const BackButton = styled.button`
+const BackButton = styled(NavLink)`
     width: 174px;
     height: 48px;
     font:normal normal 24px Roboto;
@@ -100,7 +97,7 @@ class BuyStock extends React.Component {
         const { countStocks } = this.state;
         const value = x;
         const result = countStocks + value;
-        (countStocks + x > -1) &&
+        (countStocks + x > -1 && x > 0) &&
             this.setState({
                 countStocks: result
             });
@@ -132,16 +129,16 @@ class BuyStock extends React.Component {
                     purchasePrice: result
                 })
             });
-            this.restartBlock();
         }
     }
-    restartBlock = () => {
-        const { openCloseFunction } = this.props
-        this.setState({
-            countStocks: 1
+    deleteApi = () => {
+        console.log('helli')
+        fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1/stocks/1', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
-        openCloseFunction();
-
     }
     render() {
         const { countStocks } = this.state;
@@ -149,8 +146,9 @@ class BuyStock extends React.Component {
         const result = countStocks * price;
         return (
             <BuyStockBlock>
+                {/* <button onClick={this.deleteApi}></button> */}
                 <HeaderBuyStock>
-                    <BackButton onClick={() => openCloseFunction()}><LeftOutlined />  Back</BackButton>
+                    <BackButton to={"/Account"}><LeftOutlined />  Back</BackButton>
                     <TitleStock>Buy {name}</TitleStock>
                 </HeaderBuyStock>
                 <PriceStoks><Decimal number={price} /></PriceStoks>

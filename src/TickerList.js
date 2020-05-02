@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components'
-import json from './data.json';
 {/* import Decimal from './Decimal.js'; */}
 
 class TickerList extends React.Component {
@@ -35,7 +34,6 @@ class TickerList extends React.Component {
   state = { pageNum:1, items:4 }
   formatMe = (x) => { return Number(x).toFixed(2);}
   render(){
-    console.log(Object.entries(json).map(x => x).map(x => x));
   const {items, pageNum} = this.state;
     return(
       <section className='tickerList'>

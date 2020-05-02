@@ -88,10 +88,20 @@ const submitButtonStyle = {
 
 class BuyStock extends React.Component {
     state = {
-        countStocks: 1
+        countStocks: 1,
+        ticker: '',
+        price: ''
     }
     static propTypes = {
         price: PropTypes.number
+    }
+
+    componentDidMount() {
+        const { ticker, price } = this.props.location.state;
+        this.setState({
+            ticker: ticker,
+            price: price
+        })
     }
     handleClickChangeCountStocks = (x) => {
         const { countStocks } = this.state;
@@ -140,15 +150,14 @@ class BuyStock extends React.Component {
         })
     }
     render() {
-        const { countStocks } = this.state;
-        const { name, price } = this.props;
+        const { countStocks, ticker, price } = this.state;
         const result = countStocks * price;
         return (
             <BuyStockBlock>
                 {/* <button onClick={this.deleteApi}></button> */}
                 <HeaderBuyStock>
                     <BackButton to={"/Account"}><LeftOutlined />  Back</BackButton>
-                    <TitleStock>Buy {name}</TitleStock>
+                    <TitleStock>Buy {ticker}</TitleStock>
                 </HeaderBuyStock>
                 <PriceStoks><Decimal number={price} /></PriceStoks>
                 <СountStocksBlock>

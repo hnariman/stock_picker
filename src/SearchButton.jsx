@@ -1,6 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import styled from "styled-components";
+import { NavLink } from 'react-router-dom';
 import Zoom from './img/zoom.png';
 
 
@@ -49,26 +50,37 @@ class SearchButton extends React.Component {
         tickerFound: true,
     }
 
-    getCompanyInfo = (evt) => {
-        this.setState({ tickerFound: true })
-        const ticker = evt.target.value;
-        const query = `https://financialmodelingprep.com/api/v3/company/profile/${ticker}`;
-        if (ticker.length > 0) {
-            fetch(query)
-                .then((response) => {
-                    return response.json();
-                })
-                .then((data) => {
-                    this.setState({
-                        ticker: data.symbol,
-                        companyName: data.profile.companyName,
-                        price: data.profile.price,
-                    });
-                })
-                .catch((error) => {
-                    this.setState({ tickerFound: false })
-                })
-        }
+    timeOutId = null;
+
+    componentDidMount() {
+        this.hello()
+    }
+    hello = () => {
+        console.log('hello')
+    }
+    handlerChange = (evt) => {
+        const value = evt.target.value.toUpperCase();
+        const { status } = this.props;
+        value == '' ? status(true) : status(false);
+        clearTimeout(this.timeOutId);
+        this.timeOutId = setTimeout(() => value ? this.getCompanyInfo(value) : this.setState({ ticker: value, tickerFound: false }), 500)
+    }
+    getCompanyInfo = (ticker) => {
+        fetch(`https://financialmodelingprep.com/api/v3/company/profile/${ticker}`)
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                this.setState({
+                    ticker: (ticker == data.symbol) ? data.symbol : '',
+                    companyName: data.profile.companyName,
+                    price: data.profile.price,
+                    tickerFound: true
+                });
+            })
+            .catch((error) => {
+                this.setState({ tickerFound: false, ticker: ticker, companyName: '', price: '', })
+            })
     }
 
     render() {
@@ -79,12 +91,14 @@ class SearchButton extends React.Component {
                         <img src={Zoom} alt='search button' />
                     </ZoomIcon>
                     <div>
-                        <Input placeholder="enter company ticker" onBlur={this.getCompanyInfo} />
+                        <Input placeholder="enter company ticker" onChange={this.handlerChange} />
                     </div>
                 </InputCSS>
-                {this.state.tickerFound ?
-                    <p>{this.state.ticker} - <span> - {this.state.companyName} - </span> - {this.state.price}$</p>
-                    : <p>not found</p>}
+                {(this.state.ticker !== '') ? <div>
+                    {this.state.tickerFound ?
+                        <NavLink to={{ pathname: "/BuyStock", state: { name: this.state.companyName } }}>{this.state.ticker} <span>{this.state.companyName}</span>{this.state.price}$</NavLink>
+                        : <p>not found</p>}
+                </div> : null}
             </div>
         );
     }

@@ -7,10 +7,15 @@ class Stock extends React.Component {
     state = {
         status: true
     }
+    statusChange = (stat) => {
+        this.setState({
+            status: stat
+        })
+    }
     render() {
         return (
             <div>
-                <SearchButton />
+                <SearchButton status={this.statusChange} />
                 {this.state.status ? <TickerList /> : null}
             </div>
         );

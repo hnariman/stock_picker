@@ -9,6 +9,7 @@ class TickerList extends React.Component {
   state = {
     pageNum: 1,
     items: 20,
+    stockNet: [],
     stockArr: [],
     stockArrLength: null
   }
@@ -17,10 +18,10 @@ class TickerList extends React.Component {
 
   switchPage = e => {
     this.setState({ pageNum: e.selected + 1 });
-    this.takeOurFetchNet();
   }
 
   componentDidMount() {
+    console.log('hello')
     this.takeOurFetchNet();
   }
 
@@ -29,21 +30,18 @@ class TickerList extends React.Component {
       { method: 'GET' })
       .then(res => res.json())
       .then(res => {
-        const arr = res.symbolsList.slice(this.state.items * (this.state.pageNum - 1), this.state.pageNum * this.state.items);
         this.setState({
-          stockArr: arr,
+          stockNet: res.symbolsList,
           stockArrLength: res.symbolsList.length
         })
       })
   }
 
   render() {
-    const { items, stockArr, stockArrLength } = this.state;
-    console.log(stockArr)
-    // const data = stockArr.symbolsList.map(x => x);
+    const { items, stockArr, stockNet, stockArrLength } = this.state;
     return (
       <section>
-        <div>{stockArr.map(each =>
+        <div>{stockNet.slice(this.state.items * (this.state.pageNum - 1), this.state.pageNum * this.state.items).map(each =>
           <Ticker key={each.code}>
             <Detail> {each.symbol} </Detail>
             <Detail> {each.name} </Detail>

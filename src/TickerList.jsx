@@ -43,14 +43,14 @@ class TickerList extends React.Component {
     // const data = stockArr.symbolsList.map(x => x);
     return (
       <section>
-        <div>{stockArr.map(each =>
+        <ScroolDiv>{stockArr.map(each =>
           <Ticker key={each.code}>
             <Detail> {each.symbol} </Detail>
             <Detail> {each.name} </Detail>
             <Detail> {each.price} </Detail>
           </Ticker>
         )}
-        </div>
+        </ScroolDiv>
         <ReactPaginate
           previousLabel={'prev'}
           nextLabel={'next'}
@@ -68,6 +68,16 @@ class TickerList extends React.Component {
     )
   }
 }
+
+const ScroolDiv = styled.div`
+overflow: scroll; 
+overflow-x: hidden; 
+height: 400px; 
+padding: 5px; 
+&::-webkit-scrollbar {
+  width: 0px;
+    }
+`;
 
 const Ticker = styled.ul`
   margin:2px auto;

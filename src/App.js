@@ -7,12 +7,11 @@ import Stock from './Stock';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 class App extends React.Component {
-  constructor() {
-    super()
-    this.callFetch()
-  }
   state = {
     balance: null
+  }
+  componentDidMount() {
+    this.callFetch()
   }
   callFetch = () => {
     fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1')
@@ -25,6 +24,12 @@ class App extends React.Component {
         })
       });
   }
+  refreshBalance = (res) => {
+    this.setState({
+      balance: res
+    })
+  }
+
   render() {
     const balance = this.state.balance
     return (
@@ -33,7 +38,7 @@ class App extends React.Component {
         <Switch>
           <Route path="/Account" component={Account} />
           <Route path="/Stock" component={Stock} />
-          <Route exact path="/BuyStock"><BuyStock price={88.07} openCloseFunction={this.buy} code='NKE' currentBalance={balance} name='Nike' /></Route>
+          <Route  path="/BuyStock"><BuyStock price={88.07} code='NKE' currentBalance={100000} name='Nike' refreshBalance={this.refreshBalance} /></Route>
         </Switch>
         <Footer currentBalance={balance} />
       </Router>

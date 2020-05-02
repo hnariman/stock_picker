@@ -19,12 +19,12 @@ const HeaderBuyStock = styled.div`
     display: flex;
     justify-content: space-around;
     align-items:center;
-    padding:20px;
+    padding:0 20px 20px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
 `
 const BackButton = styled(NavLink)`
     width: 174px;
-    height: 48px;
+    padding: 20px 0;
     font:normal normal 24px Roboto;
     text-align: center;
     color: #833AE0;
@@ -67,7 +67,7 @@ const СountStocks = styled.div`
     -webkit-user-select: none;
 `
 
-const SubmitButton = styled.div`
+const SubmitButton = styled(NavLink)`
     display:flex;
     justify-content: center;
 `
@@ -97,7 +97,7 @@ class BuyStock extends React.Component {
         const { countStocks } = this.state;
         const value = x;
         const result = countStocks + value;
-        (countStocks + x > -1 && x > 0) &&
+        (countStocks + x > -1) &&
             this.setState({
                 countStocks: result
             });
@@ -105,8 +105,7 @@ class BuyStock extends React.Component {
     sendInfoToApi = (result) => {
         const currentBalance = this.props.currentBalance
         const newCurrentBalance = currentBalance - result
-        console.log(newCurrentBalance)
-        if (newCurrentBalance > 0) {
+        if (newCurrentBalance > 0 && result > 0) {
             fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1', {
                 method: 'PUT',
                 headers: {
@@ -129,11 +128,11 @@ class BuyStock extends React.Component {
                     purchasePrice: result
                 })
             });
+            this.props.refreshBalance(newCurrentBalance);
         }
     }
     deleteApi = () => {
-        console.log('helli')
-        fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1/stocks/1', {
+        fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1/stocks/104', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -142,7 +141,7 @@ class BuyStock extends React.Component {
     }
     render() {
         const { countStocks } = this.state;
-        const { name, price, openCloseFunction } = this.props;
+        const { name, price } = this.props;
         const result = countStocks * price;
         return (
             <BuyStockBlock>
@@ -158,7 +157,7 @@ class BuyStock extends React.Component {
                     <PlusOutlined onClick={() => this.handleClickChangeCountStocks(+1)} style={countStocksButtonStyle} />
                 </СountStocksBlock>
                 <TotlaPriceStoks>Buy for <Decimal number={result} /></TotlaPriceStoks>
-                <SubmitButton><Button onClick={() => this.sendInfoToApi(result)} type='primary' shape='round' size='large' style={submitButtonStyle}>Buy</Button></SubmitButton>
+                <SubmitButton to={"/Account"}><Button onClick={() => { this.sendInfoToApi(result); }} type='primary' shape='round' size='large' style={submitButtonStyle}>Buy</Button></SubmitButton>
             </BuyStockBlock>
         )
     }

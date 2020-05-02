@@ -9,22 +9,33 @@ const StyledLink = styled(NavLink).attrs({ activeClassName })`
   &.${activeClassName} {
     color: #833ae0;
     border-bottom: 2px solid #833ae0;
-  text-decoration: none;
+    text-decoration: none;
+  }
+  &:hover{
+    color: #ffdc40;
+    border-bottom: 2px solid black;
+    text-decoration: none;
+  }
+  &{
+    color: black;
+    font-family: "Roboto";
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 5px;
+    margin-right: -23px;
   }
 `;
 const Navigation = styled.a` 
-// margin-top: 20px;
-font-family: "Roboto";
-font-size: 20px;
-float: left;
-// text-decoration: none;
-display: flex;
+    font-family: "Roboto";
+    font-size: 20px;
+    float: left;
+    display: flex;
 `
 const mainHeader = {
     'textAlign': "center",
     'display': "inlineBlock",
-    'height': '111px',
-    'boxShadow': "0px 4px 6px rgba(0, 0, 0, 0.15)"
+    'height': '75px',
 }
 const image = {
     'marginTop': "30px",
@@ -36,7 +47,7 @@ const divLink = styled.div`
   color: #ffdc40;
   border-bottom: 2px solid black;
   cursor: pointer;
-    }
+}
 `
 const navigationLink = {
     'fontSize': "20px",
@@ -48,6 +59,7 @@ const navigationLink = {
     'marginLeft': "30px",
     'marginTop': "25px",
     'paddingBottom': '15px',
+    'margin-left':'50px'
 }
 
 class Navbar extends React.Component {

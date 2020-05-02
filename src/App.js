@@ -33,6 +33,7 @@ class App extends React.Component {
   render() {
     const balance = this.state.balance
     return (
+<<<<<<< HEAD
       <Router>
         <Navbar />
         <Switch>
@@ -43,6 +44,15 @@ class App extends React.Component {
         <Footer currentBalance={balance} />
       </Router>
     );
+=======
+      <div>
+        <TickerList />
+        <button onClick={this.buy}>okey</button>
+        {this.state.status ? <BuyStock price={88.07} openCloseFunction={this.buy} code='NKE' currentBalance={100000} name='Nike' /> : null}
+        <Footer />
+      </div>
+    )
+>>>>>>> ce648156c5849ad6d7ab7d2e816db981aaff6cd3
   }
 }
 export default App;

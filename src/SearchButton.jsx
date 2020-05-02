@@ -52,12 +52,7 @@ class SearchButton extends React.Component {
 
     timeOutId = null;
 
-    componentDidMount() {
-        this.hello()
-    }
-    hello = () => {
-        console.log('hello')
-    }
+
     handlerChange = (evt) => {
         const value = evt.target.value.toUpperCase();
         const { status } = this.props;
@@ -96,7 +91,7 @@ class SearchButton extends React.Component {
                 </InputCSS>
                 {(this.state.ticker !== '') ? <div>
                     {this.state.tickerFound ?
-                        <NavLink to={{ pathname: "/BuyStock", state: { name: this.state.companyName } }}>{this.state.ticker} <span>{this.state.companyName}</span>{this.state.price}$</NavLink>
+                        <NavLink to={{ pathname: "/BuyStock", state: { ticker: this.state.ticker, price: this.state.price } }}>{this.state.ticker} <span>{this.state.companyName}</span>{this.state.price}$</NavLink>
                         : <p>not found</p>}
                 </div> : null}
             </div>

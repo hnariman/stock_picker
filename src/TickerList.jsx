@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
 import Decimal from './Decimal.jsx';
+import { NavLink } from 'react-router-dom';
 import './paginate-style.css';
 
 class TickerList extends React.Component {
@@ -38,11 +39,12 @@ class TickerList extends React.Component {
   }
 
   render() {
-    const { items, stockArr, stockNet, stockArrLength } = this.state;
+    const { items, stockNet, stockArrLength } = this.state;
+    console.log(stockNet)
     return (
       <section>
         <div>{stockNet.slice(this.state.items * (this.state.pageNum - 1), this.state.pageNum * this.state.items).map(each =>
-          <Ticker key={each.code}>
+          <Ticker to={{ pathname: "/BuyStock", state: { ticker: each.symbol, price: each.price } }} key={each.code}>
             <Detail> {each.symbol} </Detail>
             <Detail> {each.name} </Detail>
             <Detail> {each.price} </Detail>
@@ -67,13 +69,13 @@ class TickerList extends React.Component {
   }
 }
 
-const Ticker = styled.ul`
+const Ticker = styled(NavLink)`
   margin:2px auto;
   width: 40vw;
   height:10vh;
   line-height:10vh;
   border:1px solid black;
   &:hover{ background:#ffcccc; } `;
-const Detail = styled.li` display: inline-block; margin-right: 50px; `;
+const Detail = styled.div` display: inline-block; margin-right: 50px; `;
 
 export default TickerList;

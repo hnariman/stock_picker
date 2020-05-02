@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import PortfolioTable from './PortfolioTable';
 
 class Account extends React.Component {
+
   state = { portfolio:[], balance:0 }
   componentDidMount ()  { this.getPortfolio(); this.getBalance() };
   componentDidUpdate()  { this.getPortfolio(); this.getBalance() };

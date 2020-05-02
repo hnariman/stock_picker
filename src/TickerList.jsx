@@ -3,12 +3,14 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
 import Decimal from './Decimal.jsx';
+import { NavLink } from 'react-router-dom';
 import './paginate-style.css';
 
 class TickerList extends React.Component {
   state = {
     pageNum: 1,
     items: 20,
+    stockNet: [],
     stockArr: [],
     stockArrLength: null
   }
@@ -17,10 +19,10 @@ class TickerList extends React.Component {
 
   switchPage = e => {
     this.setState({ pageNum: e.selected + 1 });
-    this.takeOurFetchNet();
   }
 
   componentDidMount() {
+    console.log('hello')
     this.takeOurFetchNet();
   }
 
@@ -29,22 +31,20 @@ class TickerList extends React.Component {
       { method: 'GET' })
       .then(res => res.json())
       .then(res => {
-        const arr = res.symbolsList.slice(this.state.items * (this.state.pageNum - 1), this.state.pageNum * this.state.items);
         this.setState({
-          stockArr: arr,
+          stockNet: res.symbolsList,
           stockArrLength: res.symbolsList.length
         })
       })
   }
 
   render() {
-    const { items, stockArr, stockArrLength } = this.state;
-    console.log(stockArr)
-    // const data = stockArr.symbolsList.map(x => x);
+    const { items, stockNet, stockArrLength } = this.state;
+    console.log(stockNet)
     return (
       <section>
-        <div>{stockArr.map(each =>
-          <Ticker key={each.code}>
+        <div>{stockNet.slice(this.state.items * (this.state.pageNum - 1), this.state.pageNum * this.state.items).map(each =>
+          <Ticker to={{ pathname: "/BuyStock", state: { ticker: each.symbol, price: each.price } }} key={each.code}>
             <Detail> {each.symbol} </Detail>
             <Detail> {each.name} </Detail>
             <Detail> {each.price} </Detail>
@@ -69,13 +69,13 @@ class TickerList extends React.Component {
   }
 }
 
-const Ticker = styled.ul`
+const Ticker = styled(NavLink)`
   margin:2px auto;
   width: 40vw;
   height:10vh;
   line-height:10vh;
   border:1px solid black;
   &:hover{ background:#ffcccc; } `;
-const Detail = styled.li` display: inline-block; margin-right: 50px; `;
+const Detail = styled.div` display: inline-block; margin-right: 50px; `;
 
 export default TickerList;

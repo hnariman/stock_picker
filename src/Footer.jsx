@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Decimal from './Decimal';
 const FooterCSS = styled.div`
     font-family: 'Roboto', sans-serif;
-    position: absolute;
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%; 
@@ -28,6 +28,13 @@ const FooterAmountCSS = styled.div`
     font-size: 36px;
 `;
 
+const TeamCSS = styled.div`
+    width: 300px;
+    font-size: 12px;
+    line-height: 15px;
+    color: #833AE0;
+`;
+
 const FooterRemainCSS = styled.span`
     font-size: 26px;
 `;
@@ -40,7 +47,12 @@ class Footer extends Component {
             <FooterCSS>
                 <FooterBalanceCSS>Balance:</FooterBalanceCSS>
                 <FooterAmountCSS><Decimal number={currentBalance} /></FooterAmountCSS>
-                <FooterAmountCSS></FooterAmountCSS>
+                <TeamCSS>
+                Nariman Huseynov<br/>
+                Sabina Huseynova<br/>
+                Chingiz Shigayev<br/>
+                Team Lead: Shahriyar Mirzai-Sefidi
+                </TeamCSS>
             </FooterCSS>
         );
     }

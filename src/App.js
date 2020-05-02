@@ -29,7 +29,7 @@ class App extends React.Component {
       balance: res
     })
   }
-
+ 
   render() {
     const balance = this.state.balance
     return (
@@ -38,7 +38,7 @@ class App extends React.Component {
         <Switch>
           <Route path="/Account" component={Account} />
           <Route path="/Stock" component={Stock} />
-          <Route  path="/BuyStock"><BuyStock price={88.07} code='NKE' currentBalance={100000} name='Nike' refreshBalance={this.refreshBalance} /></Route>
+          <Route path="/BuyStock"><BuyStock price={88.07} code='NKE' currentBalance={100000} name={this.props.name} refreshBalance={this.refreshBalance} /></Route>
         </Switch>
         <Footer currentBalance={balance} />
       </Router>

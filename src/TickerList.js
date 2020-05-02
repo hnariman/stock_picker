@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components'
-import json from './data.json';
 import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
 import Decimal from './Decimal.jsx';

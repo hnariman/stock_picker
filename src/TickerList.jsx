@@ -54,13 +54,13 @@ class TickerList extends React.Component {
         )}
         </ScroolDiv>
         <ReactPaginate
-          previousLabel={'prev'}
-          nextLabel={'next'}
-          breakLabel={'.'}
+          previousLabel={'<'}
+          nextLabel={'>'}
+          breakLabel={'...'}
           breakClassName={'break-me'}
           pageCount={Math.ceil(stockArrLength / items)}
-          marginPagesDisplayed={5}
-          pageRangeDisplayed={1}
+          marginPagesDisplayed={1}
+          pageRangeDisplayed={3}
           onPageChange={this.switchPage}
           containerClassName={'container'}
           subContainerClassName={'subcontainer '}

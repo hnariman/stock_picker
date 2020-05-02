@@ -1,9 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import styled from "styled-components";
-
-// import Zoom from './img/zoom.png';
-import Zoom from './zoom.png';
+import Zoom from './img/zoom.png';
 
 
 const InputCSS = styled.div`

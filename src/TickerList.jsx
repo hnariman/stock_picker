@@ -43,14 +43,16 @@ class TickerList extends React.Component {
     console.log(stockNet)
     return (
       <section>
+
         <div>{stockNet.slice(this.state.items * (this.state.pageNum - 1), this.state.pageNum * this.state.items).map(each =>
           <Ticker to={{ pathname: "/BuyStock", state: { ticker: each.symbol, price: each.price } }} key={each.code}>
+
             <Detail> {each.symbol} </Detail>
             <Detail> {each.name} </Detail>
             <Detail> {each.price} </Detail>
           </Ticker>
         )}
-        </div>
+        </ScroolDiv>
         <ReactPaginate
           previousLabel={'prev'}
           nextLabel={'next'}
@@ -69,7 +71,19 @@ class TickerList extends React.Component {
   }
 }
 
-const Ticker = styled(NavLink)`
+
+const ScroolDiv = styled.div`
+overflow: scroll; 
+overflow-x: hidden; 
+height: 60vh; 
+padding: 5px; 
+&::-webkit-scrollbar {
+  width: 0px;
+    }
+`;
+
+const Ticker = styled.ul`
+
   margin:2px auto;
   width: 40vw;
   height:10vh;

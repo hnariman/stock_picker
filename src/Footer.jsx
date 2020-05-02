@@ -17,6 +17,10 @@ const FooterCSS = styled.div`
     color: #FFDC40;
 `;
 
+const FooterHeight = styled.div`
+height: 67px;
+`;
+
 const FooterBalanceCSS = styled.div`
     width: 300px;  
     font-size: 22px;
@@ -44,16 +48,18 @@ class Footer extends Component {
     render = () => {
         const { currentBalance } = this.props
         return (
-            <FooterCSS>
-                <FooterBalanceCSS>Balance:</FooterBalanceCSS>
-                <FooterAmountCSS><Decimal number={currentBalance} /></FooterAmountCSS>
-                <TeamCSS>
-                Nariman Huseynov<br/>
-                Sabina Huseynova<br/>
-                Chingiz Shigayev<br/>
+            <FooterHeight>
+                <FooterCSS>
+                    <FooterBalanceCSS>Balance:</FooterBalanceCSS>
+                    <FooterAmountCSS><Decimal number={currentBalance} /></FooterAmountCSS>
+                    <TeamCSS>
+                        Nariman Huseynov<br />
+                Sabina Huseynova<br />
+                Chingiz Shigayev<br />
                 Team Lead: Shahriyar Mirzai-Sefidi
                 </TeamCSS>
-            </FooterCSS>
+                </FooterCSS>
+            </FooterHeight>
         );
     }
 }

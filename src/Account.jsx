@@ -24,7 +24,6 @@ class Account extends React.Component {
         for (let i = 0; i < res.symbolsList.length / 20; i++) {
           arr.push(i)
         }
-        console.log(arr);
         this.setState({
           ourStock: res,
           page: arr

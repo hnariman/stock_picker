@@ -46,10 +46,9 @@ class TickerList extends React.Component {
 
         <ScroolDiv>{stockNet.slice(this.state.items * (this.state.pageNum - 1), this.state.pageNum * this.state.items).map(each =>
           <Ticker to={{ pathname: "/BuyStock", state: { ticker: each.symbol, price: each.price } }} key={each.code}>
-
-            <Detail> {each.symbol} </Detail>
-            <Detail> {each.name} </Detail>
-            <Detail> {each.price} </Detail>
+            <div style={tdSymbol}> {each.symbol} </div>
+            <div style={tdName} > {each.name} </div>
+            <div style={tdPrice}><span style={priceDecimal} ><Decimal number={each.price} /></span></div>
           </Ticker>
         )}
         </ScroolDiv>
@@ -85,13 +84,38 @@ padding: 5px;
 const Ticker = styled(NavLink)`
   margin:2px auto;
   width: 40vw;
-  height:10vh;
+  height: 70px;
   line-height:10vh;
-  border:1px solid black;
+  border-bottom: 1px dashed #E0E0E0;
+  padding: 20px 30px;
   display:flex;
   justify-content: space-between;
     align-items:center;
-  &:hover{ background:#ffcccc; } `;
-const Detail = styled.div` display: inline-block; margin-right: 50px; `;
+    &:hover{
+    background: rgba(131, 58, 224, 0.05); `;
+
+
+const tdSymbol = {
+  'color': "rgba(0, 0, 0, 0.5)",
+  'fontSize': "12px",
+  'marginLeft': "-16px",
+  'width': "66px"
+}
+const tdName = {
+  'color': "#000000",
+  'fontSize': "22px",
+  'width': "800px",
+  'textAlign': "left"
+}
+const tdPrice = {
+  'color': "#000000",
+  'fontSize': "30px",
+  'marginTop': "-10px",
+  'width': "150px",
+  'textAlign': "right"
+}
+const priceDecimal = {
+  'fontSize': "20px"
+}
 
 export default TickerList;

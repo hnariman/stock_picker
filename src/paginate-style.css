@@ -1,0 +1,14 @@
+.container {
+  user-select:none;
+  list-style-type: none;
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 0 auto;
+  width: 25vw;
+}
+.container>* {
+  display:inline;
+  margin: 0.3rem;
+}
+
+.active { opacity: 0.5; }

@@ -59,7 +59,7 @@ const navigationLink = {
     'marginLeft': "30px",
     'marginTop': "25px",
     'paddingBottom': '15px',
-    'margin-left':'50px'
+    'margin-left': '50px'
 }
 
 class Navbar extends React.Component {
@@ -76,11 +76,6 @@ class Navbar extends React.Component {
                         <StyledLink to={"/Stock"}>
                             Stock
                 </StyledLink>
-                    </div>
-                    <div className="divLink" style={navigationLink}>
-                        <StyledLink to={"/BuyStock"}>
-                            BuyStock
-                    </StyledLink>
                     </div>
                 </Navigation>
                 <img style={image} alt="bank" src={bank} />

@@ -22,7 +22,6 @@ class StokeTickerList extends React.Component {
   }
 
   componentDidMount() {
-    console.log('hello')
     this.takeOurFetchNet();
   }
 

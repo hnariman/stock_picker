@@ -119,17 +119,6 @@ class BuyStock extends React.Component {
         const currentBalance = this.props.currentBalance
         const newCurrentBalance = currentBalance - result
         if (newCurrentBalance > 0 && result > 0) {
-            fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    "name": "Team one",
-                    "currentBalance": newCurrentBalance
-
-                })
-            })
             fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1/stocks', {
                 method: 'POST',
                 headers: {
@@ -142,17 +131,36 @@ class BuyStock extends React.Component {
                     amount: this.state.countStocks,
                     purchasePrice: result
                 })
-            });
-            this.props.refreshBalance(newCurrentBalance);
+            }).then((res) => {
+                if (res.status === 200 || res.status === 201) {
+                    console.log('hello')
+                    fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            "name": "Team one",
+                            "currentBalance": newCurrentBalance
+
+                        })
+                    })
+                    this.props.refreshBalance(newCurrentBalance);
+                } else {
+                    alert('Проблемы с сервером')
+                }
+            })
+        } else {
+            alert('Пополните баланс')
         }
     }
     deleteApi = () => {
-        fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1/stocks/389', {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+        // fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1/stocks/398', {
+        //     method: 'DELETE',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // })
         // fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1', {
         //     method: 'PUT',
         //     headers: {

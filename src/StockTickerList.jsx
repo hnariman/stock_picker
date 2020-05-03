@@ -6,7 +6,7 @@ import Decimal from './Decimal.jsx';
 import { NavLink } from 'react-router-dom';
 import './paginate-style.css';
 
-class TickerList extends React.Component {
+class StokeTickerList extends React.Component {
   state = {
     pageNum: 1,
     items: 20,
@@ -117,4 +117,4 @@ const priceDecimal = {
   'fontSize': "20px"
 }
 
-export default TickerList;
+export default StokeTickerList;

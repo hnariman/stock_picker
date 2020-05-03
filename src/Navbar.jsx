@@ -62,7 +62,7 @@ class Navbar extends React.Component {
         <header style={mainHeader}>
           <Navigation>
             <NavigationLink>
-              <StyledLink exact to={"/Account"}> Account </StyledLink>
+              <StyledLink  to={"/Account"}> Account </StyledLink>
             </NavigationLink>
             <NavigationLink>
               <StyledLink to={"/Stock"}> Stock </StyledLink> </NavigationLink>

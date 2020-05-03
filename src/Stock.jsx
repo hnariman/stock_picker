@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import TickerList from './TickerList.jsx';
+import StokeTickerList from './StockTickerList.jsx';
 import SearchButton from './SearchButton.jsx';
 
 class Stock extends React.Component {
@@ -17,7 +17,7 @@ class Stock extends React.Component {
             <div>
                 <div style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.15)", height: '5px' }}></div>
                 <SearchButton status={this.statusChange} />
-                {this.state.status ? <TickerList /> : null}
+                {this.state.status ? <StokeTickerList /> : null}
             </div>
         );
     }

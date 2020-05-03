@@ -135,6 +135,7 @@ class BuyStock extends React.Component {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
+                    ticker: this.state.ticker,
                     name: this.state.name,
                     code: this.props.code,
                     amount: this.state.countStocks,
@@ -145,11 +146,22 @@ class BuyStock extends React.Component {
         }
     }
     deleteApi = () => {
-        fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1/stocks/286', {
+        fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1/stocks/312', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             }
+        })
+        fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "name": "Team one",
+                "currentBalance": 100000
+
+            })
         })
     }
     render() {
@@ -159,7 +171,7 @@ class BuyStock extends React.Component {
             <BuyStockBlock>
                 {/* <button onClick={this.deleteApi}></button> */}
                 <HeaderBuyStock>
-                    <BackButton to={"/Account"}><LeftOutlined />  Back</BackButton>
+                    <BackButton to={"/Stock"}><LeftOutlined />  Back</BackButton>
                     <TitleStock>Buy {ticker}</TitleStock>
                     <div style={{ width: '174px' }}></div>
                 </HeaderBuyStock>
@@ -170,7 +182,7 @@ class BuyStock extends React.Component {
                     <PlusOutlined onClick={() => this.handleClickChangeCountStocks(+1)} style={countStocksButtonStyle} />
                 </СountStocksBlock>
                 <TotlaPriceStoks>Buy for <Decimal number={result} /></TotlaPriceStoks>
-                <SubmitButton to={"/Account"}><Button onClick={() => { this.sendInfoToApi(result); }} type='primary' shape='round' size='large' style={submitButtonStyle}>Buy</Button></SubmitButton>
+                <SubmitButton to={"/Stock"}><Button onClick={() => { this.sendInfoToApi(result); }} type='primary' shape='round' size='large' style={submitButtonStyle}>Buy</Button></SubmitButton>
             </BuyStockBlock>
         )
     }

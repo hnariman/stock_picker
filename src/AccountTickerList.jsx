@@ -3,6 +3,7 @@ import BuyStock from './BuyStock.jsx';
 import Footer from './Footer';
 import Decimal from './Decimal.jsx';
 import Navbar from "./Navbar";
+import Progres from './Progres'
 import ReactPaginate from 'react-paginate';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from 'styled-components';
@@ -17,7 +18,9 @@ class AccountTickerList extends React.Component {
         items: 20,
         stockArrLength: null,
     }
-    componentDidMount() { this.getPortfolio(); this.getBalance() };
+    componentDidMount() {
+        this.getPortfolio();
+    };
 
     getPortfolio = () => {
         fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1/stocks')
@@ -26,29 +29,23 @@ class AccountTickerList extends React.Component {
             .catch(err => console.log(err))
     }
 
-    getBalance = () => {
-        fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1')
-            .then(res => res.json())
-            .then(res => this.setState({ balance: res.currentBalance }))
-            .catch(err => console.log(err))
-    }
 
     render() {
         const { items, portfolio, stockArrLength } = this.state;
         portfolio.balance = this.state.balance;
-        portfolio.map(code => code.marketPrice = 20);
         console.log(portfolio)
         return (
             <section>
-                <ScroolDiv>{portfolio.slice(this.state.items * (this.state.pageNum - 1), this.state.pageNum * this.state.items).map(each =>
-                    <Ticker key={each.code}>
-                        <div style={tdSymbol}> {each.ticker} </div>
-                        <div style={tdName} > {each.code} </div>
-                        <div style={tdName} > {each.amount}pcs </div>
-                        <div style={tdName} > {each.purchasePrice} </div>
-                        <div style={tdPrice}>{((each.purchasePrice - each.marketPrice) > 0) ? `down ${(each.purchasePrice - each.marketPrice).toFixed(2)}` : `up ${(each.purchasePrice - each.marketPrice).toFixed(2)}`}</div>
-                    </Ticker>
-                )}
+                <ScroolDiv>
+                    {portfolio.slice(this.state.items * (this.state.pageNum - 1), this.state.pageNum * this.state.items).map(each =>
+                        <Ticker key={each.code}>
+                            <div style={tdSymbol}> {each.ticker} </div>
+                            <div style={tdName} > {each.name} </div>
+                            <div style={tdAmount} > {each.amount}pcs </div>
+                            <div style={tdPurchasePrice} > {each.purchasePrice} </div>
+                            <div><Progres ticker={each.ticker} price={+each.purchasePrice / +each.amount} /></div>
+                        </Ticker>
+                    )}
                 </ScroolDiv>
                 <ReactPaginate
                     previousLabel={'<'}
@@ -100,15 +97,20 @@ const tdSymbol = {
 const tdName = {
     'color': "#000000",
     'fontSize': "22px",
-    'width': "800px",
-    'textAlign': "left"
+    'width': "500px",
+    'textAlign': "center"
 }
-const tdPrice = {
+const tdAmount = {
     'color': "#000000",
-    'fontSize': "30px",
-    'marginTop': "-10px",
-    'width': "150px",
-    'textAlign': "right"
+    'fontSize': "22px",
+    'width': "200px",
+    'textAlign': "center"
+}
+const tdPurchasePrice = {
+    'color': "#000000",
+    'fontSize': "22px",
+    'width': "200px",
+    'textAlign': "center"
 }
 const priceDecimal = {
     'fontSize': "20px"

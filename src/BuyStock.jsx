@@ -146,7 +146,7 @@ class BuyStock extends React.Component {
         }
     }
     deleteApi = () => {
-        fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1/stocks/312', {
+        fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1/stocks/328', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

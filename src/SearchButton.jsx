@@ -6,7 +6,7 @@ import Zoom from './img/zoom.png';
 
 
 const InputCSS = styled.div`
-    margin: 0 auto;
+    margin: 33px auto;
     display: flex;
     flex-direction: row;
     width: 360px;
@@ -22,7 +22,7 @@ const Input = styled.input`
     background-color: #F3F3F3; 
     //  background-color: black; 
     width: 200px;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-left: 18px;
     outline: none;
     text-align: center;

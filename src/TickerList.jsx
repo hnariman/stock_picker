@@ -53,13 +53,13 @@ class TickerList extends React.Component {
         )}
         </ScroolDiv>
         <ReactPaginate
-          previousLabel={'prev'}
-          nextLabel={'next'}
+          previousLabel={'<'}
+          nextLabel={'>'}
           breakLabel={'.'}
-          breakClassName={'break-me'}
+          breakClassName={'...'}
           pageCount={Math.ceil(stockArrLength / items)}
-          marginPagesDisplayed={5}
-          pageRangeDisplayed={1}
+          marginPagesDisplayed={1}
+          pageRangeDisplayed={3}
           onPageChange={this.switchPage}
           containerClassName={'container'}
           subContainerClassName={'subcontainer '}
@@ -74,32 +74,33 @@ class TickerList extends React.Component {
 const ScroolDiv = styled.div`
 overflow: scroll; 
 overflow-x: hidden; 
-height: 60vh; 
+height: 52vh; 
+margin: 94px auto;
 padding: 5px; 
+width: 1010px;
+font-family: "Roboto";
+margin: 50px auto;
+${'' /* 'width': "1005px" */}
 &::-webkit-scrollbar {
   width: 0px;
     }
 `;
-
 const Ticker = styled(NavLink)`
-  margin:2px auto;
-  width: 40vw;
   height: 70px;
-  line-height:10vh;
   border-bottom: 1px dashed #E0E0E0;
   padding: 20px 30px;
-  display:flex;
+  width: 1005px;
+  display: flex;
   justify-content: space-between;
-    align-items:center;
-    &:hover{
-    background: rgba(131, 58, 224, 0.05); `;
-
-
+  &:hover{
+  background: rgba(131, 58, 224, 0.05);
+} `;
 const tdSymbol = {
   'color': "rgba(0, 0, 0, 0.5)",
   'fontSize': "12px",
   'marginLeft': "-16px",
-  'width': "66px"
+  'width': "66px",
+  'marginTop': "auto"
 }
 const tdName = {
   'color': "#000000",

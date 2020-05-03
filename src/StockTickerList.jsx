@@ -72,7 +72,7 @@ class StokeTickerList extends React.Component {
 const ScroolDiv = styled.div`
 overflow: scroll; 
 overflow-x: hidden; 
-height: 50vh; 
+height: 40vh; 
 padding: 5px; 
 width: 1010px;
 font-family: "Roboto";

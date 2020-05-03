@@ -9,8 +9,8 @@ const FooterCSS = styled.div`
     width: 100%; 
     display: flex;
     justify-content: space-between;
-    height: 67px;
-    line-height: 70px;
+    height: 9.5vh;
+    line-height: 10vh;
     background: #833AE0; 
     text-align: center;
     letter-spacing: 0.03em;
@@ -18,7 +18,7 @@ const FooterCSS = styled.div`
 `;
 
 const FooterHeight = styled.div`
-height: 67px;
+height: 9.5vh;
 `;
 
 const FooterBalanceCSS = styled.div`

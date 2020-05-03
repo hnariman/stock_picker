@@ -10,14 +10,14 @@ const StyledLink = styled(NavLink).attrs({ activeClassName })`
     color: #833ae0;
     border-bottom: 2px solid #833ae0;
     text-decoration: none;
-    width: 170px;
+    width: 14.75vw;
     position: absolute;
   }
   &:hover{
     color: #ffdc40;
     border-bottom: 2px solid black;
     text-decoration: none;
-    width: 170px;
+    width: 14.75vw;
     position: absolute;
   }
   &{
@@ -26,8 +26,8 @@ const StyledLink = styled(NavLink).attrs({ activeClassName })`
     font-size: 20px;
     text-decoration: none;
     font-weight: 500;
-    padding: 10px 40px;
-    margin-right: -44px;
+    padding: 1.42vh 3.47vw;
+    margin-right: -3.81vw;
     vertical-align: middle;
     position: absolute;
   }`;
@@ -41,19 +41,19 @@ const Navigation = styled.a`
 const mainHeader = {
   'textAlign': "center",
   'display': "flex",
-  'paddingTop': "20px",
+  'paddingTop': "2.85vh",
   'justifyContent': "space-between",
-  'height': '100px',
+  'height': '17.7vh',
 
 }
 const image = {
-  'marginTop': "25px",
-  'marginRight': "70px",
+  'marginTop': "3.57vh",
+  'marginRight': "6.07vw",
 }
 const NavigationLink = styled.div`
-    padding-bottom: 15px;
-    margin-left: 50px;
-    margin-right: 128px;
+    padding-bottom: 2.14vh;
+    margin-left: 4.34vw;
+    margin-right: 11.11vw;
 `;
 class Navbar extends React.Component {
   render = () => {

@@ -35,6 +35,8 @@ const TitleStock = styled.div`
     font:normal normal 48px Roboto;
     color: #2FC20A;
     min-width:21.7vw;
+    text-align:center;
+
     `
 const СountStocksBlock = styled.div`
     display: flex;
@@ -145,23 +147,23 @@ class BuyStock extends React.Component {
         }
     }
     deleteApi = () => {
-        fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1/stocks/328', {
+        fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1/stocks/389', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             }
         })
-        fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "name": "Team one",
-                "currentBalance": 100000
+        // fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1', {
+        //     method: 'PUT',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         "name": "Team one",
+        //         "currentBalance": 100000
 
-            })
-        })
+        //     })
+        // })
     }
     render() {
         const { countStocks, ticker, price } = this.state;

@@ -78,7 +78,6 @@ padding: 5px;
 width: 1010px;
 font-family: "Roboto";
 margin: 50px auto;
-${'' /* 'width': "1005px" */}
 &::-webkit-scrollbar {
   width: 0px;
     }

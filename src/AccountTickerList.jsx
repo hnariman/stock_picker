@@ -33,17 +33,16 @@ class AccountTickerList extends React.Component {
     render() {
         const { items, portfolio, stockArrLength } = this.state;
         portfolio.balance = this.state.balance;
-        console.log(portfolio)
         return (
             <section>
                 <ScroolDiv>
                     {portfolio.slice(this.state.items * (this.state.pageNum - 1), this.state.pageNum * this.state.items).map(each =>
-                        <Ticker key={each.code}>
+                        <Ticker key={each.id}>
                             <div style={tdSymbol}> {each.ticker} </div>
                             <div style={tdName} > {each.name} </div>
                             <div style={tdAmount} > {each.amount}pcs </div>
                             <div style={tdPurchasePrice} > {each.purchasePrice} </div>
-                            <div><Progres ticker={each.ticker} price={+each.purchasePrice / +each.amount} /></div>
+                            <div><Progres ticker={each.ticker} price={(+each.purchasePrice / +each.amount).toFixed(2)} /></div>
                         </Ticker>
                     )}
                 </ScroolDiv>

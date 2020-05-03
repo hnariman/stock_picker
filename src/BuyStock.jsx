@@ -85,17 +85,19 @@ class BuyStock extends React.Component {
     state = {
         countStocks: 1,
         ticker: '',
-        price: ''
+        price: '',
+        name: ''
     }
     static propTypes = {
         price: PropTypes.number
     }
 
     componentDidMount() {
-        const { ticker, price } = this.props.location.state;
+        const { ticker, price, name } = this.props.location.state;
         this.setState({
             ticker: ticker,
-            price: price
+            price: price,
+            name: name
         })
     }
     handleClickChangeCountStocks = (x) => {
@@ -133,6 +135,7 @@ class BuyStock extends React.Component {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
+                    name: this.state.name,
                     code: this.props.code,
                     amount: this.state.countStocks,
                     purchasePrice: result
@@ -142,7 +145,7 @@ class BuyStock extends React.Component {
         }
     }
     deleteApi = () => {
-        fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1/stocks/104', {
+        fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1/stocks/286', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

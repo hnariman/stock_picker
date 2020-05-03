@@ -40,12 +40,11 @@ class TickerList extends React.Component {
 
   render() {
     const { items, stockNet, stockArrLength } = this.state;
-    console.log(stockNet)
     return (
       <section>
 
         <ScroolDiv>{stockNet.slice(this.state.items * (this.state.pageNum - 1), this.state.pageNum * this.state.items).map(each =>
-          <Ticker to={{ pathname: "/BuyStock", state: { ticker: each.symbol, price: each.price } }} key={each.code}>
+          <Ticker to={{ pathname: "/BuyStock", state: { ticker: each.symbol, price: each.price, name: each.name } }} key={each.code}>
             <div style={tdSymbol}> {each.symbol} </div>
             <div style={tdName} > {each.name} </div>
             <div style={tdPrice}><span style={priceDecimal} ><Decimal number={each.price} /></span></div>

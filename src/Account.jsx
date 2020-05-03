@@ -11,7 +11,6 @@ class Account extends React.Component {
 
   state = { portfolio:[], balance:0 }
   componentDidMount ()  { this.getPortfolio(); this.getBalance() };
-  componentDidUpdate()  { this.getPortfolio(); this.getBalance() };
 
   getPortfolio = () => {
     fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1/stocks')

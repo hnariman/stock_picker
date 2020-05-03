@@ -106,7 +106,7 @@ class SearchButton extends React.Component {
                 </InputCSS>
                 {(this.state.ticker !== '') ? <div>
                     {this.state.tickerFound ?
-                        <Ticker to={{ pathname: "/BuyStock", state: { ticker: this.state.ticker, price: this.state.price } }}><div style={tdSymbol}>{this.state.ticker}</div><div style={tdName}>{this.state.companyName}</div><div style={tdPrice}><span style={priceDecimal} ><Decimal number={this.state.price} /></span></div></Ticker>
+                        <Ticker to={{ pathname: "/BuyStock", state: { ticker: this.state.ticker, price: this.state.price.toFixed(2), name: this.state.companyName } }}><div style={tdSymbol}>{this.state.ticker}</div><div style={tdName}>{this.state.companyName}</div><div style={tdPrice}><span style={priceDecimal} ><Decimal number={this.state.price} /></span></div></Ticker>
                         : <div style={notFound}>Not found</div>}
                 </div> : null
                 }

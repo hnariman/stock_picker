@@ -11,8 +11,7 @@ const BuyStockBlock = styled.div`
    display:flex;
    flex-direction:column;
    justify-content: space-between;
-   min-height:400px;
-   height:80vh;
+   height:60vh;
 `
 
 const HeaderBuyStock = styled.div`
@@ -22,7 +21,7 @@ const HeaderBuyStock = styled.div`
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
     `
 const BackButton = styled(NavLink)`
-    width: 174px;
+    width: 15.10vw;
     padding: 20px 0;
     font:normal normal 24px Roboto;
     text-align: center;
@@ -35,7 +34,7 @@ const BackButton = styled(NavLink)`
 const TitleStock = styled.div`
     font:normal normal 48px Roboto;
     color: #2FC20A;
-    min-width:250px;
+    min-width:21.7vw;
     `
 const СountStocksBlock = styled.div`
     display: flex;
@@ -48,7 +47,7 @@ const PriceStoks = styled.div`
     color: #000000;
 `
 const TotlaPriceStoks = styled.div`
-    height: 11px;
+    height: 1.57vh;
     font:normal normal 20px Roboto;
     text-align: center;
     color: #000000;
@@ -56,7 +55,7 @@ const TotlaPriceStoks = styled.div`
 `
 const СountStocks = styled.input`
     font: normal 200 64px Roboto;
-    width: 150px;
+    width: 13vw;
     text-align: center;
     color: #833AE0;
     border:none;
@@ -77,8 +76,8 @@ const submitButtonStyle = {
     'font': "normal normal 24px Roboto",
     'background': "white",
     'color': "#833AE0",
-    'width': "174px",
-    'height': "49px",
+    'width': "15.10vw",
+    'height': "7vh",
 }
 
 class BuyStock extends React.Component {
@@ -173,7 +172,7 @@ class BuyStock extends React.Component {
                 <HeaderBuyStock>
                     <BackButton to={"/Stock"}><LeftOutlined />  Back</BackButton>
                     <TitleStock>Buy {ticker}</TitleStock>
-                    <div style={{ width: '174px' }}></div>
+                    <div style={{ width: '15.10vw' }}></div>
                 </HeaderBuyStock>
                 <PriceStoks><Decimal number={price} /></PriceStoks>
                 <СountStocksBlock>

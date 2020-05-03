@@ -7,11 +7,11 @@ import Decimal from './Decimal.jsx';
 import { AutoComplete } from 'antd';
 
 const InputCSS = styled.div`
-    margin: 33px auto;
+    margin: 4.71vh auto;
     display: flex;
     flex-direction: row;
-    width: 360px;
-    height: 60px;
+    width: 31.25vw;
+    height: 8.57vh;
     background-color: #F3F3F3;
     border-radius: 94px;
     &:hover {
@@ -20,8 +20,10 @@ const InputCSS = styled.div`
 `;
 
 const Input = styled.input`
+top:50%;
+left:50%;
+transform:translate(-50%; -50%);
     background-color: #F3F3F3; 
-    width: 200px;
     outline: none;
     text-align: center;
     font-size: 25px;
@@ -29,7 +31,7 @@ const Input = styled.input`
     border: none;
     width: 100%;
     margin: 0 auto;
-    padding-right: 37px;
+    padding-right: 3.21vw;
 ::placeholder{
     text-align: center;
 }    
@@ -39,15 +41,15 @@ margin: 0 auto;
         opacity: 0.8;
     }    
     &::placeholder {
-        font-size: 20px;
+        font-size: 2.85vh;
       }    
 `;
 const inputDiv = {
-    'width': "270px",
-    'marginTop': "8px"
+    'width': "23.43vw",
+    'marginTop': "1.14vh"
 }
 const ZoomIcon = styled.div`
-    padding: 18px;
+    padding: 2.57vh 1.56vw;
 `;
 
 class SearchButton extends React.Component {
@@ -115,17 +117,17 @@ class SearchButton extends React.Component {
     }
 }
 const notFound = {
-    'marginTop': "60px",
+    'marginTop': "8.57vh",
     'textAlign': "center",
     'fontSize': "22px",
     'fontFamily': "Roboto",
     'color': "black"
 }
 const Ticker = styled(NavLink)`
-  height: 70px;
+  height: 10vh;
   border-bottom: 1px dashed #E0E0E0;
-  padding: 20px 30px;
-  width: 1005px;
+  padding: 2.85vh 2.6vw;
+  width: 87.23vw;
   margin: auto;
   display: flex;
   justify-content: space-between;
@@ -135,21 +137,21 @@ const Ticker = styled(NavLink)`
 const tdSymbol = {
     'color': "rgba(0, 0, 0, 0.5)",
     'fontSize': "12px",
-    'marginLeft': "-16px",
-    'width': "66px",
+    'marginLeft': "-1.38vw",
+    'width': "5.72vw",
     'marginTop': "auto"
 }
 const tdName = {
     'color': "#000000",
     'fontSize': "22px",
-    'width': "800px",
+    'width': "69.44vw",
     'textAlign': "left"
 }
 const tdPrice = {
     'color': "#000000",
     'fontSize': "30px",
-    'marginTop': "-10px",
-    'width': "150px",
+    'marginTop': "-1.42vh",
+    'width': "1.3vw",
     'textAlign': "right"
 }
 const priceDecimal = {

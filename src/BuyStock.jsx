@@ -36,6 +36,7 @@ const TitleStock = styled.div`
     font:normal normal 48px Roboto;
     color: #2FC20A;
     min-width:250px;
+    text-align:center;
     `
 const СountStocksBlock = styled.div`
     display: flex;

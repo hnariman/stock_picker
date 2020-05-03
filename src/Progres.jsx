@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes, { number } from 'prop-types';
 import Decimal from './Decimal';
+import greenArrow from '../src/img/greenArrow.png';
+import redArrow from '../src/img/redArrow.png';
 
 class Progres extends React.Component {
     state = {
@@ -45,14 +47,33 @@ class Progres extends React.Component {
     render() {
         const { oldBalance, changes, changesPercentage } = this.state
         const balance = oldBalance == null ? false : true;
+        const status = changes > 0 ? priceUp : priceDown;
         console.log(balance)
         return (
-            <div>
+            <div >
                 {balance ? <Decimal number={oldBalance} /> : null}
-                <div>{changes}$</div>
-                <div>{changesPercentage}%</div>
+                <div style={{ ...tdArrowPrice, ...status }}>
+                    <div >{changes > 0 ? <img src={greenArrow} /> : <img src={redArrow} />}{changes}$</div>
+                    <div>({changesPercentage}%)</div>
+                </div>
             </div>
         )
     }
+}
+const tdArrowPrice = {
+    'color': "#000",
+    'fontSize': "18px",
+    'fontWeight': "normal",
+    'justify-content': "space-around",
+    'display': "flex",
+    'align-items': 'center',
+    'width': '120px',
+}
+const priceDown = {
+    'color': "#FF2C2C",
+
+}
+const priceUp = {
+    'color': "#2FC20A",
 }
 export default Progres

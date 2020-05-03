@@ -97,7 +97,7 @@ const tdName = {
     'color': "#000000",
     'fontSize': "22px",
     'width': "500px",
-    'textAlign': "center"
+    'textAlign': "left"
 }
 const tdAmount = {
     'color': "#000000",

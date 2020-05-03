@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const DecimalBlock = styled.span`
-    font-size: 34px;
+    font-size: 1.4em;
 `
 class Decimal extends React.Component {
     prettify = (num) => {

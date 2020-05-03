@@ -74,8 +74,7 @@ class TickerList extends React.Component {
 const ScroolDiv = styled.div`
 overflow: scroll; 
 overflow-x: hidden; 
-height: 52vh; 
-margin: 94px auto;
+height: 57vh; 
 padding: 5px; 
 width: 1010px;
 font-family: "Roboto";

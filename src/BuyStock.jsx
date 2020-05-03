@@ -10,18 +10,17 @@ import { Button } from 'antd';
 const BuyStockBlock = styled.div`
    display:flex;
    flex-direction:column;
-   justify-content: space-around;
+   justify-content: space-between;
    min-height:400px;
    height:80vh;
 `
 
 const HeaderBuyStock = styled.div`
     display: flex;
-    justify-content: space-around;
-    align-items:center;
+    justify-content:space-between;
     padding:0 20px 20px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
-`
+    `
 const BackButton = styled(NavLink)`
     width: 174px;
     padding: 20px 0;
@@ -35,11 +34,8 @@ const BackButton = styled(NavLink)`
 `
 const TitleStock = styled.div`
     font:normal normal 48px Roboto;
-    text-align: left;
     color: #2FC20A;
-    width:44%;
     min-width:250px;
-    -webkit-user-select: none;
     `
 const СountStocksBlock = styled.div`
     display: flex;
@@ -50,7 +46,6 @@ const PriceStoks = styled.div`
     font:normal normal 20px Roboto;
     text-align: center;
     color: #000000;
-    -webkit-user-select: none;
 `
 const TotlaPriceStoks = styled.div`
     height: 11px;
@@ -59,12 +54,13 @@ const TotlaPriceStoks = styled.div`
     color: #000000;
     -webkit-user-select: none;
 `
-const СountStocks = styled.div`
+const СountStocks = styled.input`
     font: normal 200 64px Roboto;
-    padding:0 50px;
+    width: 150px;
     text-align: center;
     color: #833AE0;
-    -webkit-user-select: none;
+    border:none;
+    outline:none;
 `
 
 const SubmitButton = styled(NavLink)`
@@ -83,7 +79,6 @@ const submitButtonStyle = {
     'color': "#833AE0",
     'width': "174px",
     'height': "49px",
-    'border': "3px solid #833AE0"
 }
 
 class BuyStock extends React.Component {
@@ -111,6 +106,11 @@ class BuyStock extends React.Component {
             this.setState({
                 countStocks: result
             });
+    }
+    handleInputChange = (evt) => {
+        this.setState({
+            countStocks: +evt.target.value
+        })
     }
     sendInfoToApi = (result) => {
         const currentBalance = this.props.currentBalance
@@ -158,11 +158,12 @@ class BuyStock extends React.Component {
                 <HeaderBuyStock>
                     <BackButton to={"/Account"}><LeftOutlined />  Back</BackButton>
                     <TitleStock>Buy {ticker}</TitleStock>
+                    <div style={{ width: '174px' }}></div>
                 </HeaderBuyStock>
                 <PriceStoks><Decimal number={price} /></PriceStoks>
                 <СountStocksBlock>
                     <MinusOutlined onClick={() => this.handleClickChangeCountStocks(-1)} style={countStocksButtonStyle} />
-                    <СountStocks >{countStocks}</СountStocks>
+                    <СountStocks value={countStocks} onChange={this.handleInputChange} />
                     <PlusOutlined onClick={() => this.handleClickChangeCountStocks(+1)} style={countStocksButtonStyle} />
                 </СountStocksBlock>
                 <TotlaPriceStoks>Buy for <Decimal number={result} /></TotlaPriceStoks>

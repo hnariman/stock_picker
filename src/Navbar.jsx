@@ -44,11 +44,10 @@ const mainHeader = {
   'paddingTop': "20px",
   'justifyContent': "space-between",
   'height': '100px',
-  'boxShadow': "0px 4px 6px rgba(0, 0, 0, 0.15)",
 
 }
 const image = {
-  'marginTop': "10px",
+  'marginTop': "25px",
   'marginRight': "70px",
 }
 const NavigationLink = styled.div`

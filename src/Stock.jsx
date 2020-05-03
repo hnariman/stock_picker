@@ -15,6 +15,7 @@ class Stock extends React.Component {
     render() {
         return (
             <div>
+                <div style={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.15)", height: '5px' }}></div>
                 <SearchButton status={this.statusChange} />
                 {this.state.status ? <TickerList /> : null}
             </div>

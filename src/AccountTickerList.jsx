@@ -7,7 +7,7 @@ import Progres from './Progres'
 import ReactPaginate from 'react-paginate';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from 'styled-components';
-import PortfolioTable from './PortfolioTable';
+
 
 class AccountTickerList extends React.Component {
 
@@ -66,11 +66,11 @@ class AccountTickerList extends React.Component {
 const ScroolDiv = styled.div`
 overflow: scroll; 
 overflow-x: hidden; 
-height: 57vh; 
+height: 45vh; 
 padding: 5px; 
 width: 1010px;
 font-family: "Roboto";
-margin: 50px auto;
+margin: 20px auto 0px;
 ${'' /* 'width': "1005px" */}
 &::-webkit-scrollbar {
   width: 0px;

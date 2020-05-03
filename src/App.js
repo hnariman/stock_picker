@@ -5,7 +5,6 @@ import Account from './Account.jsx';
 import Navbar from "./Navbar";
 import Stock from './Stock';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import PortfolioTable from './PortfolioTable';
 
 class App extends React.Component {
   state = {

@@ -44,7 +44,6 @@ const mainHeader = {
   'paddingTop': "2.85vh",
   'justifyContent': "space-between",
   'height': '17.7vh',
-
 }
 const image = {
   'marginTop': "3.57vh",
@@ -62,7 +61,7 @@ class Navbar extends React.Component {
         <header style={mainHeader}>
           <Navigation>
             <NavigationLink>
-              <StyledLink  to={"/Account"}> Account </StyledLink>
+              <StyledLink to={"/Account"}> Account </StyledLink>
             </NavigationLink>
             <NavigationLink>
               <StyledLink to={"/Stock"}> Stock </StyledLink> </NavigationLink>

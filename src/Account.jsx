@@ -7,7 +7,7 @@ import AccountTickerList from './AccountTickerList'
 import Balance from './Balance'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from 'styled-components';
-import PortfolioTable from './PortfolioTable';
+
 
 class Account extends React.Component {
 

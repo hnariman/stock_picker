@@ -5,17 +5,24 @@ import Decimal from './Decimal.jsx';
 import Navbar from "./Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from 'styled-components';
-import PortfolioTable from './PortfolioTable';
 
 class Account extends React.Component {
 
-  state = { portfolio:[], balance:0, market:[]}
-  componentDidMount ()  { this.getPortfolio(); this.getBalance(); this.getMarket() };
+  state = { portfolio:[], balance:0, currentPrices:[], tickers:[]}
+  componentDidMount ()  { this.getPortfolio(); this.getBalance(); this.getCurrentMarketPrices(); };
 
   getPortfolio = () => {
     fetch('https://5e8da89e22d8cd0016a798db.mockapi.io/users/1/stocks')
       .then (res => res.json())
-      .then (res => this.setState({portfolio: res}))
+      .then (res => {
+        const host = 'https://financialmodelingprep.com/api/v3/quote/';
+        const tickers = res.map(x => x.code).filter((total,item) => res.map(x => x.code).indexOf(total) === item)
+        this.setState({tickers:tickers})
+        const query = host + tickers.toString().split(' ').join('')
+        console.log(query)
+        this.setState({portfolio:res})
+        this.getCurrentMarketPrices(query);
+      })
       .catch(err => console.log(err))
   }
 
@@ -25,31 +32,77 @@ class Account extends React.Component {
       .then (res => this.setState({balance: res.currentBalance}))
       .catch(err => console.log(err))
   }
-  getMarket = (query) => {
+  getCurrentMarketPrices = (query) => {
     fetch(query)
       .then (res => res.json())
-      .then (res => this.setState({market: res.change}))
+      .then (res => {
+        res.map(x => console.log(x))
+        const currentPrices = res.map(x => x)
+        this.setState({currentPrices: currentPrices});
+        console.log(this.state.currentPrices[0].change)
+      })
       .catch(err => console.log(err))
   }
 
   render() {
-    const {portfolio, market} = this.state;
+    const {portfolio, currentPrices, massiveData, tickers} = this.state;
     portfolio.balance = this.state.balance;
-    portfolio.map(x => x.marketPrice=100);
-    const host = 'https://financialmodelingprep.com/api/v3/quote/';
-    let tickers = portfolio.map(x => x.code)
-    tickers = tickers.filter((acc,item) => tickers.indexOf(acc) === item)
-    const query = host + tickers.toString().split(' ').join('_')
-    console.log(query)
-    console.log(this.state.market)
+
+    const prices = portfolio.reduce((object,item) => {
+      const ticker = item.code;
+      const price = (item.purchasePrice == 0) ? 0 : item.purchasePrice;
+      if(!portfolio.hasOwnProperty(ticker)) portfolio[ticker] = 0;
+      portfolio[ticker] += price;
+      return portfolio; },{});
+    console.log(prices)
+
+    const count = portfolio.reduce((object,item) => {
+      const ticker = item.code;
+      const amount = (item.amount == 0) ? 0 : item.amount;
+      if(!portfolio.hasOwnProperty(ticker)) portfolio[ticker] = 0;
+      portfolio[ticker]+= amount;
+      return portfolio; },{});
+    console.log(count)
+
+    let rez = portfolio.reduce((x, {code:c, amount:a, purchasePrice: p}) => ({ ...x, [c]:(x[c] || 0) +p/a, }),{});
+    console.log(rez)
+    let newPortfolio = Object.keys(rez).map(x => ({code:x, amount:rez[x], purchasePrice:rez[x]}));
+    console.log(newPortfolio)
+
+
+    const final = portfolio.reduce((object,item) => {
+      const ticker = item.code;
+      const price = (item.purchasePrice == 0) ? 0 : item.purchasePrice;
+      const amount = (item.amount == 0) ? 0 : item.amount;
+      if(!portfolio.hasOwnProperty(ticker)) portfolio[ticker] = 0;
+      portfolio[ticker] += price;
+      console.log(portfolio[ticker])
+      return portfolio; },{});
+    console.log('final',final)
+    console.clear();
+
+    console.log(portfolio);
+    const rezz = portfolio.reduce( (acc, val) =>{
+      acc.sum += val.amount;
+      return acc;
+    }, {sum: 0})
+
+    console.log(rezz)
+
+
+
+
+
+
+
     return ( 
     <p>
       {portfolio.map(x => 
       <List> 
-         {x.code} 
-         {x.amount}pcs 
-         {x.purchasePrice.toFixed(2)}$ 
-         { ((x.purchasePrice - x.marketPrice) > 0) ? " looser " : " winner "  } 
+        {x.code} 
+        {x.amount}pcs 
+        {x.purchasePrice.toFixed(2)}$ 
+        { ((x.purchasePrice - x.marketPrice) > 0) ? " looser " : " winner "  } 
       </List>)}
     </p>
     );

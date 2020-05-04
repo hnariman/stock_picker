@@ -67,7 +67,7 @@ const tdArrowPrice = {
     'justify-content': "space-around",
     'display': "flex",
     'align-items': 'center',
-    'width': '130px',
+    'width': '150px',
 }
 const priceDown = {
     'color': "#FF2C2C",

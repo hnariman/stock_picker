@@ -23,7 +23,7 @@ class Progres extends React.Component {
             .then((data) => {
                 if (!data.companyProfiles) {
                     const value = (data.profile.price - this.props.price).toFixed(2);
-                    const changesValue = (100 - ((this.props.price * 100) / data.profile.price)).toFixed(2)
+                    const changesValue = (100 - ((this.props.price * 100) / data.profile.price.toFixed(2))).toFixed(2)
                     this.setState({
                         changes: value,
                         changesPercentage: changesValue
@@ -36,6 +36,7 @@ class Progres extends React.Component {
                     }
                     const oldBalance = this.props.balance;
                     const totalBalance = (+arr.reduce((a, b) => { return a + b }) - oldBalance).toFixed(2);
+                    console.log(totalBalance)
                     const changesBalance = ((totalBalance * 100) / this.props.balance).toFixed(2);
                     this.setState({
                         oldBalance: oldBalance,

@@ -16,23 +16,23 @@ class Progres extends React.Component {
     }
     takeTickerPrice = () => {
         const { ticker } = this.props;
-        fetch(`https://financialmodelingprep.com/api/v3/company/profile/${ticker}`)
+        fetch(`https://financialmodelingprep.com/api/v3/quote/${ticker}`)
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
-                if (!data.companyProfiles) {
-                    const value = (data.profile.price - this.props.price).toFixed(2);
-                    const changesValue = (100 - ((this.props.price * 100) / data.profile.price.toFixed(2))).toFixed(2)
+                if (data.length === 1) {
+                    const value = (data[0].price - this.props.price).toFixed(2);
+                    const changesValue = (100 - ((+this.props.price * 100) / +data[0].price)).toFixed(2)
                     this.setState({
                         changes: value,
                         changesPercentage: changesValue
                     });
                 } else {
-                    const newDat = data.companyProfiles;
+                    const newDat = data;
                     const arr = [];
                     for (let i = 0; i < newDat.length; i++) {
-                        arr.push(newDat[i].profile.price * this.props.amount[i]);
+                        arr.push(newDat[i].price * this.props.amount[i]);
                     }
                     const oldBalance = this.props.balance;
                     const totalBalance = (+arr.reduce((a, b) => { return a + b }) - oldBalance).toFixed(2);

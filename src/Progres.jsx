@@ -35,7 +35,7 @@ class Progres extends React.Component {
                         arr.push(newDat[i].price * this.props.amount[i]);
                     }
                     const oldBalance = this.props.balance;
-                    const totalBalance = (+arr.reduce((a, b) => { return a + b }) - oldBalance).toFixed(2);
+                    const totalBalance = (oldBalance - +arr.reduce((a, b) => { return a + b })).toFixed(2);
                     console.log(totalBalance)
                     const changesBalance = ((totalBalance * 100) / this.props.balance).toFixed(2);
                     this.setState({
@@ -68,7 +68,7 @@ const tdArrowPrice = {
     'justify-content': "space-around",
     'display': "flex",
     'align-items': 'center',
-    'width': '150px',
+    'width': '170px',
 }
 const priceDown = {
     'color': "#FF2C2C",

@@ -36,7 +36,7 @@ class App extends React.Component {
       <Router>
         <Navbar />
         <Switch>
-          <Route path="/Account" render={() => (<Account balance={balance} />)} />
+          <Route path="/" exact   render={() => (<Account balance={balance} />)} />
           <Route path="/Stock" component={Stock} />
           <Route path="/BuyStock" render={(routeProps) => (<BuyStock {...routeProps} currentBalance={balance} refreshBalance={this.refreshBalance} />)} />
         </Switch>

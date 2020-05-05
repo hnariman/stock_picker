@@ -49,12 +49,12 @@ class Progres extends React.Component {
     render() {
         const { oldBalance, changes, changesPercentage } = this.state
         const balance = oldBalance == null ? false : true;
-        const status = changes > 0 ? priceUp : priceDown;
+        const status = changes > 0 ? priceUp : changes < 0 ? priceDown : null;
         return (
             <ProgresBlock>
                 {balance ? <Decimal number={oldBalance} /> : null}
                 <div style={{ ...tdArrowPrice, ...status }}>
-                    <div >{changes > 0 ? <img src={greenArrow} /> : <img src={redArrow} />}{changes}$</div>
+                    <div >{changes > 0 ? <img src={greenArrow} /> : (changes > 0) ? <img src={redArrow} /> : null}{changes}$</div>
                     <div>({changesPercentage}%)</div>
                 </div>
             </ProgresBlock>

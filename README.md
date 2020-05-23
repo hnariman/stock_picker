@@ -1,3 +1,8 @@
+### A team made 2 days project
+### Soon to be deployed (react require some special packaging for github deploymnet)
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
